@@ -28,9 +28,12 @@ public class MainClass {
         System.out.println("Задание 6:");
         System.out.println(checkBalance(new int[]{5,3,7,4,2,9}));
         System.out.println(checkBalance(new int[]{4,2,8,5,1,7,2,7}));
-        System.out.println("Задание 7:");
-        moveArray(new int[]{4,5,8,5,1,7,2},3);
-        moveArray(new int[]{4,5,8,5,1,7,2},-2);
+        System.out.println("Задание 7 часть 1:");
+        moveArray_1(new int[]{4,5,8,5,1,7,2},3);
+        moveArray_1(new int[]{4,5,8,5,1,7,2},-2);
+        System.out.println("Задание 7 часть 2:");       
+        moveArray_2(new int[]{1,2,3,4,5,6,7,8},3);
+        //moveArray_2(new int[]{4,5,8,5,1,7,2},-3);
 	}
 	
     //1 Задать целочисленный массив, состоящий из элементов 0 и 1. Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ].
@@ -175,7 +178,7 @@ public class MainClass {
     /*7 **** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным, или отрицательным),
     * при этом метод должен сместить все элементы массива на n. Для усложнения задачи нельзя пользоваться вспомогательными массивами.
     */
-    static void moveArray(int arr[], int n) {
+    static void moveArray_1(int arr[], int n) {
         for (int i = 0; i < arr.length; i++ ) {
 
             System.out.print(arr[i] + " ");
@@ -202,7 +205,42 @@ public class MainClass {
         System.out.println();
     }
     
+    static void moveArray_2(int arr[], int n) {
+        int temp, temp1;
+        for (int i = 0; i < arr.length; i++ ) {
 
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        temp1 = arr[n-1];
+
+        for (int k = 1; k <= n; k++) {
+
+
+            temp = arr[arr.length - k];
+            for (int i = arr.length - k; i >= n; i = i - n) {
+                arr[i] = arr[i - n];
+            }
+
+            if (k == 1) {
+                temp1 = arr[n - k];
+            }
+            if (k == 2) {
+                if (arr.length > 3) {
+                    arr[k * n - 1] = temp1;
+                } else arr[1] = temp1;
+
+            }
+
+            arr[n - k] = temp;
+
+        }
+
+        for (int i = 0; i < arr.length; i++ ) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 }		
 		
 		
